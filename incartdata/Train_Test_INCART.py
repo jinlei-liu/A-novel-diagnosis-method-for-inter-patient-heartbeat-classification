@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Fri Mar  6 00:10:03 2020
 
-@author: Aiyun
-"""
 import tensorflow as tf
 import numpy as np
 import tensorflow.keras
@@ -17,9 +13,6 @@ tf.compat.v1.keras.backend.set_session(tf.compat.v1.Session(config=config))
 #config = tf.compat.v1.ConfigProto(allow_soft_placement=False, log_device_placement=False) 
 config.gpu_options.allow_growth=True
 #tf.compat.v1.keras.backend.set_session(tf.compat.v1.Session(config=config))
-
-
-
 
 import os
 #import numpy as np
@@ -96,33 +89,22 @@ data1_ds2=np.squeeze(data1_ds2, axis=1).astype(np.float64)
 
 #####################################################################################################
 
-#
-#data_ds1 = np.array(data_train.iloc[:,126:450])
-#data_f_ds1 = np.array(data_train.iloc[:,541:548])
-#label_ds1 = np.array(data_train.iloc[:,548])
-
 data_ds1 = np.expand_dims(data_ds1, axis=2)
 data1_ds1 = np.expand_dims(data1_ds1, axis=2)
-#data_250ds1 = np.expand_dims(data_250ds1, axis=2)
-#不用扩展特征
-#data_f_ds1 = np.expand_dims(data_f_ds1, axis=2)
 
 label_ds1=np_utils.to_categorical(label_ds1,4)  #-----------转化为one-hot标签 四分类
-#label1_ds1=np_utils.to_categorical(label1_ds1,4) 
 
 data_ds2 = np.expand_dims(data_ds2, axis=2)
 data1_ds2 = np.expand_dims(data1_ds2, axis=2)
-#data_250ds2 = np.expand_dims(data_250ds2, axis=2)
-#
-#data_f_ds2 = np.expand_dims(data_f_ds2, axis=2)
+
+
 
 label_ds2=np_utils.to_categorical(label_ds2,4)  #-----------转化为one-hot标签 四分类
 #label1_ds2=np_utils.to_categorical(label1_ds2,4)
 #------打乱数据------
-#Data_DS1,Data_f_DS1,Label_DS1=MITmodel.shuffle_set1(data_ds1,data_f_ds1,label_ds1)
+
 Data_DS1,Data1_DS1,Data_f_DS1,Label_DS1=MITmodel.shuffle_set2(data_ds1,data1_ds1,data_f_ds1,label_ds1)
-#Data_DS1,Data1_DS1,Label_DS1=MITmodel.shuffle_set3(data_ds1,data1_ds1,label_ds1)
-#Data_DS1,Label_DS1=Pmodel.shuffle_set(data_ds1,label_ds1)
+
 
 Data_DS2=data_ds2
 Data_250DS2=data1_ds2
@@ -141,8 +123,6 @@ Acc=[]        #存储每一折的acc
 Loss=[]      #存储每一折的loss
 #for i in range(1,6):  
 for i in range(1,2):
-#    X_train,X_train_f,X_test,X_test_f,y_train,y_test=Pmodel.cross_Kfolds_f(Data_DS1,Data_f_DS1,Label_DS1,folds,jiange,i-1,i)
-#    X_train,X_test,y_train,y_test=Pmodel.cross_Kfolds(Data_DS1,Label_DS1,folds,jiange,i-1,i)
 
     X_train=Data_DS1
     X_250train=Data1_DS1
@@ -150,15 +130,10 @@ for i in range(1,2):
     y_train=Label_DS1
     inputs1=Input(shape=(180, 1 ))
     inputs2=Input(shape=(180, 1 ))
-#    inputs3=Input(shape=(360, 1 ))
-#    inputs2=Input(shape=(200, 1))
-#    inputs4=Input(shape=(7, ))
     inputs4=Input(shape=(9,  ))   
-#    model = MITmodel.model360_revised(inputs1,inputs2,inputs4)
-#    model = MITmodel.model360_revised_3(inputs1,inputs2,inputs4)
+
     model = MITmodel.model360_revised_2(inputs1,inputs2,inputs4)
-#    model = MITmodel.model360_revised_4(inputs1,inputs4)
-#    model = MITmodel.model360_1(inputs1,inputs2)
+
     adam = Adam(lr=1e-3)
     
 #    plot_model(model, to_file='model_3.png')
@@ -172,10 +147,6 @@ for i in range(1,2):
 #                  optimizer=SGD(lr=0.01, decay=0.001, momentum=0.99, nesterov=True),
                   metrics=['categorical_accuracy']
                   )
-#model20220907_1    without features
-#model20220907_2    main
-#model20220907_3    SE---->CNN
-#model20220907_4    one input+features
 #    filepath="/home/lingang/liujinlei/mit_classify/modelfiles/classification_20211111_512batch.hdf5"#保存模型的路径
     filepath="/home/lingang/liujinlei/mit_classify/incartdata/model20230206/model_{epoch:02d}-{val_categorical_accuracy:.2f}.h5"
     checkpoint = ModelCheckpoint(filepath, verbose=1,
@@ -183,27 +154,17 @@ for i in range(1,2):
                              save_weights_only='false',period=1)
     
     callback_lists = [checkpoint]
-#    classweight = {0:1, 1:25, 2:4, 3:10}
-#    classweight = {0:1, 1:12, 2:4, 3:5}
-#    classweight = {0:1, 1:20, 2:6, 3:10}
-#    classweight = {0:1, 1:25, 2:12, 3:8}
+
     classweight = {0:1, 1:50.094105025050613, 2:2, 3:1.9151821908106785}
 #    classweight = {0:1, 1:4.094105025050613, 2:1, 3:2.9151821908106785}
 #    classweight = {0:1, 1:6, 2:1, 3:3}
 #    classweight = 'auto',
-#    history = model.fit([X_train,X_train_f],y_train,validation_data=([Data_DS2,Data_f_DS2],Label_DS2),class_weight = classweight,
-#                    callbacks=callback_lists,epochs=200,batch_size=1024)
+
     history = model.fit([X_train,X_250train,X_train_f],y_train,validation_data=([Data_DS2,Data_250DS2,Data_f_DS2],Label_DS2),class_weight =classweight,
                     callbacks=callback_lists,epochs=200,batch_size=1024) 
 #    history = model.fit([X_train,X_250train],y_train,validation_data=([Data_DS2,Data_250DS2],Label_DS2),class_weight =classweight,
 #                    callbacks=callback_lists,epochs=100,batch_size=1024) 
-#    history = model.fit([X_train,X_250train],y_train,validation_data=([Data_DS2,Data_250DS2],Label_DS2),class_weight =classweight,
-#                    callbacks=callback_lists,epochs=200,batch_size=64)
-    
-#    history = model.fit([X_train,X_train,X_train],y_train,validation_data=([Data_DS2,Data_DS2,Data_DS2],Label_DS2),
-#                        class_weight = classweight,callbacks=callback_lists,epochs=100,batch_size=64)
-#    history = model.fit(X_train,y_train,validation_data=(X_test,y_test),class_weight = classweight,
-#                    callbacks=callback_lists,epochs=50,batch_size=64)
+
     ## loss曲线
 #    pyplot.plot(history.history['loss'], label='Training loss')
 #    pyplot.plot(history.history['val_loss'], label='Validation loss')
@@ -214,48 +175,7 @@ for i in range(1,2):
 #    pyplot.show()
 #    
 #    loss,accuracy=model.evaluate([Data_DS2,Data_250DS2,Data_f_DS2],Label_DS2)
-#
-#    inputs1=Input(shape=(360,1 ))
-##    inputs3=Input(shape=(360,1))
-#    inputs2=Input(shape=(200, 1))
-##    inputs1=Input(shape=(200, 1))
-##    inputs4=Input(shape=(360, 1))
-#    inputs4=Input(shape=(9,  ))
-##    model = Pmodel.model(inputs1,inputs2,inputs3)
-##    model = Pmodel.model(inputs1,inputs2,inputs3,inputs4)
-#    model = MITmodel.model360(inputs1,inputs2,inputs4)
-#    model.load_weights(filepath)
-#    model.compile(loss='categorical_crossentropy',
-##                  optimizer='rmsprop',
-#                  optimizer='adam',
-##                  optimizer=SGD(lr=0.01, momentum=0.99, nesterov=False),
-#                  metrics=['categorical_accuracy']
-#                  )
-#    print('\ntesting(i).....'+str(i))
-#
-#    #Evaluate the model with the metrics  we defined earlier
-##    loss,accuracy=model.evaluate([X_test,X_test,X_test],y_test)
-#    loss,accuracy=model.evaluate([Data_DS2,Data_250DS2,Data_f_DS2],Label_DS2)
-#
-##    loss,accuracy=model.evaluate([Data_DS2,Data_DS2,Data_DS2],Label_DS2)
-##    loss,accuracy=model.evaluate(Data_DS2,Label_DS2)
-#    Acc.append(accuracy)
-#    Loss.append(loss)
-#    
-##    y_pred_4=model.predict([Data_DS2,Data_f_DS2])
-#    y_pred_4=model.predict([Data_DS2,Data_250DS2,Data_f_DS2])
-#
-##    y_pred_4=model.predict([Data_DS2,Data_DS2,Data_DS2])
-##    y_pred_4=model.predict(Data_DS2)
-#    #f1_score和confusion_matrix不支持one_hot，只支持普通标签
-#    y_test=np.argmax(Label_DS2,axis=1)
-#    y_pred=np.argmax(y_pred_4,axis=1)
-#    f1=metrics.f1_score(y_test, y_pred, average='macro')
-#    F1.append(f1)
-#    con_matr=confusion_matrix(y_test, y_pred)
-#    print(classification_report(y_test, y_pred))
-#    Con_Matr.append(con_matr)
-#
+
 ##----------------------------------------总体评估----------------------------------------
 #print("%.2f%% (+/- %.2f%%)" % (np.mean(F1), np.std(F1)))
 #print("%.2f%% (+/- %.2f%%)" % (np.mean(Acc), np.std(Acc)))
