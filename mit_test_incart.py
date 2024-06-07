@@ -1,10 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Tue Nov  9 19:36:47 2021
 
-@author: lingang
-"""
 import tensorflow as tf
 import numpy as np
 import tensorflow.keras
@@ -66,19 +62,6 @@ def categorical_focal_loss(gamma=2):
     return focal_loss
 start = time.time() #开始时间
 
-#data_f_ds2=np.load('/home/lingang/liujinlei/ECG-Classification-Using-CNN-and-CWT-master/data3/x2_test.npy')
-#data_f_ds2=data_f_ds2.astype(np.float64)
-
-#ata_ds2=np.load('/home/lingang/liujinlei/ECG-Classification-Using-CNN-and-CWT-master/data3/x1_test.npy')
-#data_ds2=np.squeeze(data_ds2, axis=1).astype(np.float64)
-
-#label_ds2=np.load('/home/lingang/liujinlei/ECG-Classification-Using-CNN-and-CWT-master/data3/y_test.npy')
-#label_ds2=label_ds2.astype(np.float64)
-
-#data1_ds2=np.load('/home/lingang/liujinlei/ECG-Classification-Using-CNN-and-CWT-master/data3/x0_test.npy')
-#data1_ds2=np.squeeze(data1_ds2, axis=1).astype(np.float64)
-
-
 data_f_ds2=np.load('/home/lingang/liujinlei/mit_classify/incartdata/data2/x2_test.npy')#2
 data_f_ds2=data_f_ds2.astype(np.float64)
 
@@ -91,78 +74,14 @@ label_ds2=label_ds2.astype(np.float64)
 data1_ds2=np.load('/home/lingang/liujinlei/mit_classify/incartdata/data2/x0_test.npy')#x0
 data1_ds2=np.squeeze(data1_ds2, axis=1).astype(np.float64)
 
-
-
-
-#label1_ds2=np.load('/home/lingang/liujinlei/ECG-Classification-Using-CNN-and-CWT-master/data3/y_test.npy')
-
-#label1_ds2=label1_ds2.astype(str)
-
-#data_f_ds2=np.load('/home/lingang/liujinlei/mit_classify/data13/Data_f_DS2.npy')
-#data_f_ds1=np.load('/home/lingang/liujinlei/mit_classify/data13/Data_f_DS1.npy')
-#
-#data_ds1=np.load('/home/lingang/liujinlei/mit_classify/data13/Data_DS1.npy')
-#label_ds1=np.load('/home/lingang/liujinlei/mit_classify/data13/Label_DS1.npy')
-#data_ds2=np.load('/home/lingang/liujinlei/mit_classify/data13/Data_DS2.npy')
-#label_ds2=np.load('/home/lingang/liujinlei/mit_classify/data13/Label_DS2.npy')
-#
-#data1_ds1=np.load('/home/lingang/liujinlei/mit_classify/data13/Data1_DS1.npy')
-#label1_ds1=np.load('/home/lingang/liujinlei/mit_classify/data13/Label1_DS1.npy')7
-#data1_ds2=np.load('/home/lingang/liujinlei/mit_classify/data13/Data1_DS2.npy')
-#label1_ds2=np.load('/home/lingang/liujinlei/mit_classify/data13/Label1_DS2.npy')
-
-#data_f_ds2=np.load('/home/lingang/liujinlei/mit_classify/data11/Data_f_DS2.npy')
-#data_f_ds1=np.load('/home/lingang/liujinlei/mit_classify/data11/Data_f_DS1.npy')
-#
-#data_ds1=np.load('/home/lingang/liujinlei/mit_classify/data11/Data_DS1.npy')
-#label_ds1=np.load('/home/lingang/liujinlei/mit_classify/data11/Label_DS1.npy')
-#data_ds2=np.load('/home/lingang/liujinlei/mit_classify/data11/Data_DS2.npy')
-#label_ds2=np.load('/home/lingang/liujinlei/mit_classify/data11/Label_DS2.npy')
-#
-#data1_ds1=np.load('/home/lingang/liujinlei/mit_classify/data11/Data1_DS1.npy')
-#label1_ds1=np.load('/home/lingang/liujinlei/mit_classify/data11/Label1_DS1.npy')
-#data1_ds2=np.load('/home/lingang/liujinlei/mit_classify/data11/Data1_DS2.npy')
-#label1_ds2=np.load('/home/lingang/liujinlei/mit_classify/data11/Label1_DS2.npy')
-#----------------------导入连续2.5S数据------------
-
-#data_ds1 = np.expand_dims(data_ds1, axis=2)
-
-#data_250ds1 = np.expand_dims(data_250ds1, axis=2)
-#不用扩展特征
-#data_f_ds1 = np.expand_dims(data_f_ds1, axis=2)
-
-#label_ds1=np_utils.to_categorical(label_ds1,4)  #-----------转化为one-hot标签 四分类
-
-
 data1_ds2=resample(data1_ds2,250, axis=1)
 data_ds2=resample(data_ds2,250, axis=1)
 
 data1_ds2=np.expand_dims(data1_ds2, axis=2)
 data_ds2 = np.expand_dims(data_ds2, axis=2)
-#data_250ds2 = np.expand_dims(data_250ds2, axis=2)
-#
-#data_f_ds2 = np.expand_dims(data_f_ds2, axis=2)
+
 
 label_ds2=np_utils.to_categorical(label_ds2,4)  #-----------转化为one-hot标签 四分类
-
-##------打乱数据------
-#Data_DS1,Data_f_DS1,Label_DS1=Pmodel.shuffle_set1(data_ds1,data_f_ds1,label_ds1)
-#Data_DS1,Label_DS1=Pmodel.shuffle_set(data_ds1,label_ds1)
-#Data1_DS2=data1_ds2
-#Data_DS2=data_ds2
-
-#data1_ds1=np.expand_dims(data1_ds1, axis=2)
-
-#data_ds1 = np.expand_dims(data_ds1, axis=2)
-
-#Data1_DS1=data1_ds1
-#Data_DS1=data_ds1
-#Label_DS1=label_ds1
-#Data_f_DS1=data_f_ds1
-
-
-#Label_DS2=label_ds2
-#Data_f_DS2=data_f_ds2
 
 Con_Matr=[]  #存储每一折的混淆矩阵
 F1=[]        #存储每一折的f1
@@ -184,15 +103,8 @@ for f in range(len(file)):
     inputs4=Input(shape=(9, ))
 #    inputs4=Input(shape=(8,  ))
 
-#model20220907_1    without features
-#model20220907_2    main
-#model20220907_3    SE---->CNN
-#model20220907_4    one input+features
 
-#    model = MITmodel.model360_1(inputs1,inputs2)
-#    model = Pmodel.model(inputs1,inputs2,inputs3,inputs4)
-#    model = MITmodel.model360(inputs1,inputs2,inputs4)
-#    model = MITmodel.model360_revised_1(inputs1,inputs2)
+
     model = MITmodel.model360_revised_2(inputs1,inputs2,inputs4)
 #    model = MITmodel.model360_revised_4(inputs1,inputs4)
 #    plot_model(model, to_file='model_3.png')
@@ -211,7 +123,7 @@ for f in range(len(file)):
 
     #Evaluate the model with the metrics  we defined earlier
 #    loss,accuracy=model.evaluate([X_test,X_test,X_test],y_test)
-    #loss,accuracy=model.evaluate([Data_DS2,Data1_DS2,Data_f_DS2],Label_DS2)
+#    loss,accuracy=model.evaluate([Data_DS2,Data1_DS2,Data_f_DS2],Label_DS2)
 #    loss,accuracy=model.evaluate([Data_DS2,Data1_DS2],Label_DS2)
 #    loss,accuracy=model.evaluate([Data_DS2,Data_DS2,Data_DS2],Label_DS2)
 #    loss,accuracy=model.evaluate(Data_DS2,Label_DS2)
@@ -219,49 +131,7 @@ for f in range(len(file)):
     #Loss.append(loss)
     y_pred_4 = model.predict([data_ds2,data1_ds2,data_f_ds2])
 #    y_pred_4 = model.predict([Data_DS2,Data_f_DS2])
- #####################################################################################################################   
-#    y_pred_4, feature=model.predict([Data_DS2,Data1_DS2,Data_f_DS2])
-####    feature=data111
-#    print(y_pred_4.shape)
-#    print(feature.shape)
-##    
-##    feature = np.reshape(feature,(49507,-1))
-##    print(feature.shape)
-###    tsne = TSNE(perplexity=30, n_components=2, init='pca', n_iter=5000, random_state=0)
-###    tsne = TSNE(perplexity=30, n_components=2,  init='pca',metric='cosine', learning_rate=200,random_state=0)
-###    plot_only = 500
-#    
-#    
-#    rows = np.arange(49507)
-#    np.random.shuffle(rows)
-#    n_select = 10000
-#    
-#    tsne = TSNE(n_components=2)
-##    tsne = TSNE(perplexity=30, n_components=2,  init='pca',metric='cosine', random_state=0)
-#    
-#    X = tsne.fit_transform(feature[rows[:n_select],:])
-#    
-#    import seaborn as sns
-#    
-#    palette = sns.color_palette("bright", 10)
-#    
-#
-#    
-##    label1_ds2=label1_ds2.replace('0', 'N')
-##    label1_ds2=label1_ds2.replace('1', 'S')
-##    label1_ds2=label1_ds2.replace('2', 'V')
-##    label1_ds2=label1_ds2.replace('3', 'F')
-#    
-##    sns.scatterplot(x= X[:,0],y = X[:,1], hue=label1_ds2, legend='full', palette=palette)
-#    
-#    sns.scatterplot(x= X[:,0],y = X[:,1],hue=label1_ds2[rows[:n_select]], legend='full', palette=palette)
-#    plt.show()
-###################################################################################################################################    
-#    y_pred_4=model.predict([Data_DS2,Data1_DS2])
-#    y_pred_4=model.predict([Data_DS2,Data_DS2,Data_DS2])
-#    y_pred_4=model.predict(Data_DS2)
-    #f1_score和confusion_matrix不支持one_hot，只支持普通标签
-    
+
     y_test=np.argmax(label_ds2,axis=1)
     y_pred=np.argmax(y_pred_4,axis=1)
     f1=metrics.f1_score(y_test, y_pred, average='macro')
