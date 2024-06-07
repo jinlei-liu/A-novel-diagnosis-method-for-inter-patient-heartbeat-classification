@@ -156,9 +156,13 @@ for i in range(1,2):
 #model20220907_2    main
 #model20220907_3    SE---->CNN
 #model20220907_4    one input+features    
-#    model = MITmodel.model360_revised(inputs1,inputs2,inputs4)
+
+#    Model without FEATURES    
+#    model = MITmodel.model360_revised_1(inputs1,inputs2)
+#    Model SEnet replaced by CNN   
 #    model = MITmodel.model360_revised_3(inputs1,inputs2,inputs4)
     model = MITmodel.model360_revised_2(inputs1,inputs2,inputs4)
+#    Model with single lead  
 #    model = MITmodel.model360_revised_4(inputs1,inputs4)
     
 #    model = MITmodel.model360_1(inputs1,inputs2)
