@@ -152,10 +152,6 @@ for i in range(1,2):
 #    inputs4=Input(shape=(7, ))
     inputs4=Input(shape=(9,  ))
 #    inputs4=Input(shape=(8,  ))
-#model20220907_1    without features
-#model20220907_2    main
-#model20220907_3    SE---->CNN
-#model20220907_4    one input+features    
 
 #    Model without FEATURES    
 #    model = MITmodel.model360_revised_1(inputs1,inputs2)
