@@ -70,109 +70,33 @@ def categorical_focal_loss(gamma=2):
         return K.sum(-y_true * K.pow(1 - y_pred, gamma) * K.log(y_pred), axis=-1)
 
     return focal_loss
-#----------------------导入心拍数据------------data2=520（240+280)；data1=340 （70+270)
-#data_ds1=np.load('/home/lingang/liujinlei/mit_classify/data2/Data_DS1.npy')
-#label_ds1=np.load('/home/lingang/liujinlei/mit_classify/data2/Label_DS1.npy')
-#data_f_ds1=np.load('/home/lingang/liujinlei/mit_classify/data7/Data_f_DS1.npy')
-
-#data_ds2=np.load('/home/lingang/liujinlei/mit_classify/data2/Data_DS2.npy')
-#label_ds2=np.load('/home/lingang/liujinlei/mit_classify/data2/Label_DS2.npy')
-#data_f_ds2=np.load('/home/lingang/liujinlei/mit_classify/data7/Data_f_DS2.npy')
-
-#data_f1_ds1=np.load('/home/lingang/liujinlei/mit_classify/data7/Data_f1_DS1.npy')
-#
-#data_f1_ds2=np.load('/home/lingang/liujinlei/mit_classify/data7/Data_f1_DS2.npy')
 
 #----------------------导入心拍数据------------
 
-#----------------------导入连续2.5S数据--data=900   data3=resample=640  data3=720(2s）  data5=1280（5s) data6=360;2RR  
-#----------------------data7 2RR 9个特征，data8 3 features   data9 R前0.4S，后0.5S 324 points data10=324point+9 fea
-#----------------------data11两个心拍R-1,R
 
 
-#data_f_ds1=np.load('/home/lingang/liujinlei/mit_classify/data7/Data_f_DS1.npy')
-#
-#data_f_ds2=np.load('/home/lingang/liujinlei/mit_classify/data7/Data_f_DS2.npy')
-#
-#data_ds1=np.load('/home/lingang/liujinlei/mit_classify/data7/Data_DS1.npy')
-#label_ds1=np.load('/home/lingang/liujinlei/mit_classify/data7/Label_DS1.npy')
-#data_ds2=np.load('/home/lingang/liujinlei/mit_classify/data7/Data_DS2.npy')
-#label_ds2=np.load('/home/lingang/liujinlei/mit_classify/data7/Label_DS2.npy')
-#
-#data1_ds1=np.load('/home/lingang/liujinlei/mit_classify/data7/Data1_DS1.npy')
-#label1_ds1=np.load('/home/lingang/liujinlei/mit_classify/data7/Label1_DS1.npy')
-#data1_ds2=np.load('/home/lingang/liujinlei/mit_classify/data7/Data1_DS2.npy')
-#label1_ds2=np.load('/home/lingang/liujinlei/mit_classify/data7/Label1_DS2.npy')
 ######################################################################################
-data_f_ds2=np.load('/home/lingang/liujinlei/ECG-Classification-Using-CNN-and-CWT-master/data3/x2_test.npy')
+data_f_ds2=np.load('/home/lingang/liujinlei/data3/x2_test.npy')
 data_f_ds2=data_f_ds2.astype(np.float64)
-data_f_ds1=np.load('/home/lingang/liujinlei/ECG-Classification-Using-CNN-and-CWT-master/data3/x2_train.npy')
+data_f_ds1=np.load('/home/lingang/liujinlei/data3/x2_train.npy')
 data_f_ds1=data_f_ds1.astype(np.float64)
 
-data_ds1=np.load('/home/lingang/liujinlei/ECG-Classification-Using-CNN-and-CWT-master/data3/x1_train.npy')
+data_ds1=np.load('/home/lingang/liujinlei/data3/x1_train.npy')
 data_ds1=np.squeeze(data_ds1, axis=1).astype(np.float64)
-label_ds1=np.load('/home/lingang/liujinlei/ECG-Classification-Using-CNN-and-CWT-master/data3/y_train.npy')
+label_ds1=np.load('/home/lingang/liujinlei/data3/y_train.npy')
 label_ds1=label_ds1.astype(np.float64)
-data_ds2=np.load('/home/lingang/liujinlei/ECG-Classification-Using-CNN-and-CWT-master/data3/x1_test.npy')
+data_ds2=np.load('/home/lingang/liujinlei/data3/x1_test.npy')
 data_ds2=np.squeeze(data_ds2, axis=1).astype(np.float64)
-label_ds2=np.load('/home/lingang/liujinlei/ECG-Classification-Using-CNN-and-CWT-master/data3/y_test.npy')
+label_ds2=np.load('/home/lingang/liujinlei/data3/y_test.npy')
 label_ds2=label_ds2.astype(np.float64)
 
-data1_ds1=np.load('/home/lingang/liujinlei/ECG-Classification-Using-CNN-and-CWT-master/data3/x0_train.npy')
+data1_ds1=np.load('/home/lingang/liujinlei/data3/x0_train.npy')
 data1_ds1=np.squeeze(data1_ds1, axis=1).astype(np.float64)
-data1_ds2=np.load('/home/lingang/liujinlei/ECG-Classification-Using-CNN-and-CWT-master/data3/x0_test.npy')
+data1_ds2=np.load('/home/lingang/liujinlei/data3/x0_test.npy')
 data1_ds2=np.squeeze(data1_ds2, axis=1).astype(np.float64)
 
-#####################################################################################################
-#data_f_ds2=np.load('/home/lingang/liujinlei/mit_classify/data13/Data_f_DS2.npy')
-#data_f_ds1=np.load('/home/lingang/liujinlei/mit_classify/data13/Data_f_DS1.npy')
-#
-#data_ds1=np.load('/home/lingang/liujinlei/mit_classify/data13/Data_DS1.npy')
-#label_ds1=np.load('/home/lingang/liujinlei/mit_classify/data13/Label_DS1.npy')
-#data_ds2=np.load('/home/lingang/liujinlei/mit_classify/data13/Data_DS2.npy')
-#label_ds2=np.load('/home/lingang/liujinlei/mit_classify/data13/Label_DS2.npy')
-#
-#data1_ds1=np.load('/home/lingang/liujinlei/mit_classify/data13/Data1_DS1.npy')
-#label1_ds1=np.load('/home/lingang/liujinlei/mit_classify/data13/Label1_DS1.npy')
-#data1_ds2=np.load('/home/lingang/liujinlei/mit_classify/data13/Data1_DS2.npy')
-#label1_ds2=np.load('/home/lingang/liujinlei/mit_classify/data13/Label1_DS2.npy')
-#######################################################################################################
-
-#data_f_ds2=np.load('/home/lingang/liujinlei/mit_classify/data11/Data_f_DS2.npy')
-#data_f_ds1=np.load('/home/lingang/liujinlei/mit_classify/data11/Data_f_DS1.npy')
-#
-#data_ds1=np.load('/home/lingang/liujinlei/mit_classify/data11/Data_DS1.npy')
-#label_ds1=np.load('/home/lingang/liujinlei/mit_classify/data11/Label_DS1.npy')
-#data_ds2=np.load('/home/lingang/liujinlei/mit_classify/data11/Data_DS2.npy')
-#label_ds2=np.load('/home/lingang/liujinlei/mit_classify/data11/Label_DS2.npy')
-#
-#data1_ds1=np.load('/home/lingang/liujinlei/mit_classify/data11/Data1_DS1.npy')
-#label1_ds1=np.load('/home/lingang/liujinlei/mit_classify/data11/Label1_DS1.npy')
-#data1_ds2=np.load('/home/lingang/liujinlei/mit_classify/data11/Data1_DS2.npy')
-#label1_ds2=np.load('/home/lingang/liujinlei/mit_classify/data11/Label1_DS2.npy')
 
 #########################################################################################################
-#data_ds1=np.load('/home/lingang/liujinlei/mit_classify/data_ov/Data_DS1.npy')
-#label_ds1=np.load('/home/lingang/liujinlei/mit_classify/data_ov/Label_DS1.npy')
-#data_ds2=np.load('/home/lingang/liujinlei/mit_classify/data_ov/Data_DS2.npy')
-#label_ds2=np.load('/home/lingang/liujinlei/mit_classify/data_ov/Label_DS2.npy')
-#
-#data1_ds1=np.load('/home/lingang/liujinlei/mit_classify/data_ov/Data1_DS1.npy')
-#label1_ds1=np.load('/home/lingang/liujinlei/mit_classify/data_ov/Label1_DS1.npy')
-#data1_ds2=np.load('/home/lingang/liujinlei/mit_classify/data_ov/Data1_DS2.npy')
-#label1_ds2=np.load('/home/lingang/liujinlei/mit_classify/data_ov/Label1_DS2.npy')
-#################################R前0.4S，后0.5S 324 points  #####################
-#data_250ds1=np.load('/home/lingang/liujinlei/mit_classify/data9/Data_DS1.npy')
-#label_250ds1=np.load('/home/lingang/liujinlei/mit_classify/data9/Label_DS1.npy')
-#data_250ds2=np.load('/home/lingang/liujinlei/mit_classify/data9/Data_DS2.npy')
-#label_250ds2=np.load('/home/lingang/liujinlei/mit_classify/data9/Label_DS2.npy')
-#----------------------导入连续2.5S数据------------
-#data_train=pd.read_csv('/home/lingang/liujinlei/sky/dataTrain.csv', header=None)
-#data_test=pd.read_csv('/home/lingang/liujinlei/sky/dataTest.csv', header=None)
-#
-#data_ds1 = np.array(data_train.iloc[:,126:450])
-#data_f_ds1 = np.array(data_train.iloc[:,541:548])
-#label_ds1 = np.array(data_train.iloc[:,548])
 
 data_ds1 = np.expand_dims(data_ds1, axis=2)
 data1_ds1 = np.expand_dims(data1_ds1, axis=2)
@@ -186,7 +110,7 @@ label_ds1=np_utils.to_categorical(label_ds1,4)  #-----------转化为one-hot标�
 data_ds2 = np.expand_dims(data_ds2, axis=2)
 data1_ds2 = np.expand_dims(data1_ds2, axis=2)
 #data_250ds2 = np.expand_dims(data_250ds2, axis=2)
-#
+
 #data_f_ds2 = np.expand_dims(data_f_ds2, axis=2)
 
 label_ds2=np_utils.to_categorical(label_ds2,4)  #-----------转化为one-hot标签 四分类
@@ -228,13 +152,11 @@ for i in range(1,2):
 #    inputs4=Input(shape=(7, ))
     inputs4=Input(shape=(9,  ))
 #    inputs4=Input(shape=(8,  ))
-#    model = Pmodel.model(inputs1,inputs2,inputs3)
-#    model = Pmodel.model(inputs1,inputs2,inputs3,inputs4)
-#    model = MITmodel.model361(inputs1,inputs2)
-#    model = MITmodel.model360(inputs1,inputs2,inputs4)
-    
+#model20220907_1    without features
+#model20220907_2    main
+#model20220907_3    SE---->CNN
+#model20220907_4    one input+features    
 #    model = MITmodel.model360_revised(inputs1,inputs2,inputs4)
-    
 #    model = MITmodel.model360_revised_3(inputs1,inputs2,inputs4)
     model = MITmodel.model360_revised_2(inputs1,inputs2,inputs4)
 #    model = MITmodel.model360_revised_4(inputs1,inputs4)
@@ -256,10 +178,7 @@ for i in range(1,2):
 #                  optimizer=SGD(lr=0.01, decay=0.001, momentum=0.99, nesterov=True),
                   metrics=['categorical_accuracy']
                   )
-#model20220907_1    without features
-#model20220907_2    main
-#model20220907_3    SE---->CNN
-#model20220907_4    one input+features
+
 #    filepath="/home/lingang/liujinlei/mit_classify/modelfiles/classification_20211111_512batch.hdf5"#保存模型的路径
     filepath="/home/lingang/liujinlei/mit_classify/model20220907_2/model_{epoch:02d}-{val_categorical_accuracy:.2f}.h5"
     checkpoint = ModelCheckpoint(filepath, verbose=1,
@@ -281,11 +200,7 @@ for i in range(1,2):
 #    class_weights = class_weight.compute_class_weight('balanced',
 #                                                 np.unique(y_train),
 #                                                 y_train)
-#    classweight = {0:1, 1:25, 2:4, 3:10}
-#    classweight = {0:1, 1:12, 2:4, 3:5}
-#    classweight = {0:1, 1:20, 2:6, 3:10}
-#    classweight = {0:1, 1:25, 2:12, 3:8}
-#    classweight = {0:1, 1:8.094105025050613, 2:1, 3:2.9151821908106785}
+
     classweight = {0:1, 1:4.094105025050613, 2:1, 3:2.9151821908106785}
 #    classweight = {0:1, 1:6, 2:1, 3:3}
 #    classweight = 'auto',
@@ -312,48 +227,7 @@ for i in range(1,2):
 #    pyplot.show()
 #    
 #    loss,accuracy=model.evaluate([Data_DS2,Data_250DS2,Data_f_DS2],Label_DS2)
-#
-#    inputs1=Input(shape=(360,1 ))
-##    inputs3=Input(shape=(360,1))
-#    inputs2=Input(shape=(200, 1))
-##    inputs1=Input(shape=(200, 1))
-##    inputs4=Input(shape=(360, 1))
-#    inputs4=Input(shape=(9,  ))
-##    model = Pmodel.model(inputs1,inputs2,inputs3)
-##    model = Pmodel.model(inputs1,inputs2,inputs3,inputs4)
-#    model = MITmodel.model360(inputs1,inputs2,inputs4)
-#    model.load_weights(filepath)
-#    model.compile(loss='categorical_crossentropy',
-##                  optimizer='rmsprop',
-#                  optimizer='adam',
-##                  optimizer=SGD(lr=0.01, momentum=0.99, nesterov=False),
-#                  metrics=['categorical_accuracy']
-#                  )
-#    print('\ntesting(i).....'+str(i))
-#
-#    #Evaluate the model with the metrics  we defined earlier
-##    loss,accuracy=model.evaluate([X_test,X_test,X_test],y_test)
-#    loss,accuracy=model.evaluate([Data_DS2,Data_250DS2,Data_f_DS2],Label_DS2)
-#
-##    loss,accuracy=model.evaluate([Data_DS2,Data_DS2,Data_DS2],Label_DS2)
-##    loss,accuracy=model.evaluate(Data_DS2,Label_DS2)
-#    Acc.append(accuracy)
-#    Loss.append(loss)
-#    
-##    y_pred_4=model.predict([Data_DS2,Data_f_DS2])
-#    y_pred_4=model.predict([Data_DS2,Data_250DS2,Data_f_DS2])
-#
-##    y_pred_4=model.predict([Data_DS2,Data_DS2,Data_DS2])
-##    y_pred_4=model.predict(Data_DS2)
-#    #f1_score和confusion_matrix不支持one_hot，只支持普通标签
-#    y_test=np.argmax(Label_DS2,axis=1)
-#    y_pred=np.argmax(y_pred_4,axis=1)
-#    f1=metrics.f1_score(y_test, y_pred, average='macro')
-#    F1.append(f1)
-#    con_matr=confusion_matrix(y_test, y_pred)
-#    print(classification_report(y_test, y_pred))
-#    Con_Matr.append(con_matr)
-#
+
 ##----------------------------------------总体评估----------------------------------------
 #print("%.2f%% (+/- %.2f%%)" % (np.mean(F1), np.std(F1)))
 #print("%.2f%% (+/- %.2f%%)" % (np.mean(Acc), np.std(Acc)))
