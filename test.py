@@ -1,10 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Tue Nov  9 19:36:47 2021
 
-@author: lingang
-"""
 import tensorflow as tf
 import numpy as np
 import tensorflow.keras
