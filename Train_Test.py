@@ -18,9 +18,6 @@ tf.compat.v1.keras.backend.set_session(tf.compat.v1.Session(config=config))
 config.gpu_options.allow_growth=True
 #tf.compat.v1.keras.backend.set_session(tf.compat.v1.Session(config=config))
 
-
-
-
 import os
 #import numpy as np
 import random
