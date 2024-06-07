@@ -1,1 +1,1 @@
-The saved model was uploaded on Releases Files.
+The saved model has been uploaded to Releases File.
