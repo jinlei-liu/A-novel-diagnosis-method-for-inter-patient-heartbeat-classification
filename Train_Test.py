@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Fri Mar  6 00:10:03 2020
 
-@author: Aiyun
-"""
 import tensorflow as tf
 import numpy as np
 import tensorflow.keras
@@ -183,37 +179,17 @@ for i in range(1,2):
                              save_weights_only='false',period=1)
     
     
-#    checkpoint = ModelCheckpoint(filepath, verbose=1,
-#                              monitor='val_categorical_accuracy', mode='max',
-#                             save_best_only='True')
-#    mode='max',
-    #lr_scheduler = LearningRateScheduler(lr_schedule)
-    
-    #lr_scheduler=0.001
-    #callback_lists = [checkpoint, lr_scheduler]
+
     
     callback_lists = [checkpoint]
-    
-#    class_weights = class_weight.compute_class_weight('balanced',
-#                                                 np.unique(y_train),
-#                                                 y_train)
+
 
     classweight = {0:1, 1:4.094105025050613, 2:1, 3:2.9151821908106785}
-#    classweight = {0:1, 1:6, 2:1, 3:3}
-#    classweight = 'auto',
-#    history = model.fit([X_train,X_train_f],y_train,validation_data=([Data_DS2,Data_f_DS2],Label_DS2),class_weight = classweight,
-#                    callbacks=callback_lists,epochs=200,batch_size=1024)
+
     history = model.fit([X_train,X_250train,X_train_f],y_train,validation_data=([Data_DS2,Data_250DS2,Data_f_DS2],Label_DS2),class_weight =classweight,
                     callbacks=callback_lists,epochs=200,batch_size=1024) 
-#    history = model.fit([X_train,X_250train],y_train,validation_data=([Data_DS2,Data_250DS2],Label_DS2),class_weight =classweight,
-#                    callbacks=callback_lists,epochs=100,batch_size=1024) 
-#    history = model.fit([X_train,X_250train],y_train,validation_data=([Data_DS2,Data_250DS2],Label_DS2),class_weight =classweight,
-#                    callbacks=callback_lists,epochs=200,batch_size=64)
     
-#    history = model.fit([X_train,X_train,X_train],y_train,validation_data=([Data_DS2,Data_DS2,Data_DS2],Label_DS2),
-#                        class_weight = classweight,callbacks=callback_lists,epochs=100,batch_size=64)
-#    history = model.fit(X_train,y_train,validation_data=(X_test,y_test),class_weight = classweight,
-#                    callbacks=callback_lists,epochs=50,batch_size=64)
+
     ## loss曲线
 #    pyplot.plot(history.history['loss'], label='Training loss')
 #    pyplot.plot(history.history['val_loss'], label='Validation loss')
