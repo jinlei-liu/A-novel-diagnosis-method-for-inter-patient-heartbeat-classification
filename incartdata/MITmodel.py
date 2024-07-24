@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Thu Mar  5 18:40:53 2020
 
-@author: Aiyun
-"""
 import numpy as np
 from tensorflow.keras import backend as K
 #from keras.layers import MaxPooling1D,AveragePooling1D,Conv1D,MaxPool1D,add,Flatten,Dense,Concatenate,Activation
@@ -716,9 +712,7 @@ def model360_revised_3(inputs1,inputs2,inputs4):
 
     
     Dense4 = Concatenate(axis=1)([Dense3, inputs4])
-    
-
-      
+ 
     
     
     output_layer = Dense(4, activation='softmax')(Dense4)
