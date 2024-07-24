@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Thu Mar  5 18:40:53 2020
 
-@author: Aiyun
-"""
 import numpy as np
 from tensorflow.keras import backend as K
 #from keras.layers import MaxPooling1D,AveragePooling1D,Conv1D,MaxPool1D,add,Flatten,Dense,Concatenate,Activation
@@ -801,7 +797,6 @@ def model360_revised_4(inputs1,inputs4):
  
     block_1=Activation('relu')(block_1)  
 
- 
 
 #####################################################################################################################
 
